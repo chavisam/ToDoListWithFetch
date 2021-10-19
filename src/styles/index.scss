@@ -11,3 +11,36 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+img {
+    width: 200px;
+    border: 1px black solid;
+    padding: 10px;
+}
+
+.col{
+    max-width: 500px;
+}
+
+.trash{
+    cursor: pointer;
+    color:red;
+    visibility: hidden;
+}
+
+
+
+.list-group-item:hover{
+    .trash{
+    visibility: visible;
+    }
+}
+
+
+.counter{
+    font-size:smaller;
+    font-style: italic;
+    -webkit-box-shadow: 0px 7px 3px 1px rgba(209,198,209,1);
+    -moz-box-shadow: 0px 7px 3px 1px rgba(209,198,209,1);
+    box-shadow: 0px 7px 3px 1px rgba(209,198,209,1);
+}

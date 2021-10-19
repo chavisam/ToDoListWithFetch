@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import swal from "sweetalert";
 
 export const List = () => {
 	const [toDo, setToDo] = useState(null);
@@ -45,12 +46,15 @@ export const List = () => {
 						onKeyPress={e => {
 							//that means that the key pressed is intro
 							e.which == 13
-								? //HERE you are adding a new li to list array
-								  (setList([...list, e.target.value]),
-								  // here you are cleanning the input value
-								  (e.target.value = null),
-								  setCount(list.length + 1),
-								  console.log("item added"))
+								? e.target.value == list[list.length - 1]
+									? swal("That item is already on the list!!") //HERE you are adding a new li to list array
+									: e.target.value == ""
+									? swal(
+											"Please do not leave the task empty!!"
+									  )
+									: (setList([...list, e.target.value]),
+									  (e.target.value = null),
+									  setCount(list.length + 1))
 								: setToDo(e.target.value);
 						}}
 					/>
@@ -61,6 +65,7 @@ export const List = () => {
 					<ul className="list-group">{newLI}</ul>
 				</div>
 			</div>
+			{/* this is the list counter */}
 			<div className="row">
 				<div className="col mx-auto">
 					<ul className="list-group">

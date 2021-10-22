@@ -43,9 +43,9 @@ export const List = () => {
 						name="list"
 						id="list"
 						placeholder="Next thing to Do..."
-						onKeyPress={e => {
+						onKeyUp={e => {
 							//that means that the key pressed is intro
-							e.which == 13
+							e.keyCode == 13
 								? e.target.value == list[list.length - 1]
 									? swal("That item is already on the list!!") //HERE you are adding a new li to list array
 									: e.target.value == ""

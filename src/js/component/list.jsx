@@ -6,7 +6,7 @@ export const List = () => {
 
 	const updateAPI = (sucessCallBack, failureCallBack) => {
 		//REST
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/chavisam", {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/alesanchezr", {
 			method: "PUT",
 			body: JSON.stringify(list),
 			headers: {
@@ -37,7 +37,7 @@ export const List = () => {
 				//api OK
 
 				//agregar el item localmente
-				setList(...list, toDo);
+				setList([...list, toDo]);
 			},
 			error => {
 				//api WRONG
@@ -72,7 +72,6 @@ export const List = () => {
 				<div
 					className="col trash  text-end"
 					onClick={() => {
-						console.log("deleted");
 						deleteTask(index);
 					}}>
 					X
@@ -97,10 +96,12 @@ export const List = () => {
 								if (e.target.value) {
 									//comprobar si el valor existe
 									list.indexOf(e.target.value) == -1
-										? addTask({
-												label: e.target.value,
-												done: false
-										  })
+										? addTask([
+												{
+													label: e.target.value,
+													done: false
+												}
+										  ])
 										: swal("ya existe");
 								} else {
 									swal("Está vacío");

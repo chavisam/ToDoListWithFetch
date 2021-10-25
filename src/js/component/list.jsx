@@ -17,7 +17,7 @@ export const List = props => {
 			`https://assets.breatheco.de/apis/fake/todos/user/${props.name}`,
 			{
 				method: "POST",
-				body: [],
+				body: JSON.stringify([]),
 				headers: {
 					"Content-Type": "application/json"
 				}
@@ -31,7 +31,7 @@ export const List = props => {
 			})
 			.then(response => {
 				console.log("New user created");
-				console.log(response); //this will print on the console the exact object received from the server
+				console.log(response);
 			})
 			.catch(error => {
 				//error handling
@@ -54,7 +54,7 @@ export const List = props => {
 					.then(resp => {
 						if (!resp.ok) {
 							console.log("he lanzado el error");
-							throw "";
+							throw Error(console.log("error en el get"));
 						}
 						console.log("no error, we proceed");
 						return resp.json();
@@ -182,14 +182,16 @@ export const List = props => {
 								// comprobar que no está vacío
 								if (e.target.value) {
 									//comprobar si el valor existe
-									list.includes({
+									let newTask = {
 										label: e.target.value,
 										done: false
-									}) == false
-										? (addTask({
-												label: e.target.value,
-												done: false
-										  }),
+									};
+
+									const myArr = list.map(x => {
+										return x.label;
+									});
+									myArr.includes(e.target.value) == false
+										? (addTask(newTask),
 										  (e.target.value = ""))
 										: swal(
 												"The item is already on the list!"

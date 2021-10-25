@@ -30,12 +30,18 @@ img {
     visibility: hidden;
 }
 
+.done{visibility: hidden;
+cursor: pointer;
+font-size: smaller;
+}
+
 
 
 .list-group-item:hover{
-    .trash{
+    .done,.trash{
     visibility: visible;
     }
+    
 }
 
 

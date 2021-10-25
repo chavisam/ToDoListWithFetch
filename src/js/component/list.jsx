@@ -150,10 +150,74 @@ export const List = props => {
 			});
 	};
 
+	const markAsDone = index => {
+		//change in local
+		console.log("cambiando Done");
+		list[index].done == false
+			? setList(
+					list.splice(index, 1, {
+						label: list[index].label,
+						done: true
+					})
+			  )
+			: setList(
+					list.splice(index, 1, {
+						label: list[index].label,
+						done: false
+					})
+			  );
+		//change in API
+		fetch(
+			`https://assets.breatheco.de/apis/fake/todos/user/${props.name}`,
+			{
+				method: "PUT",
+				//convert to json your array or object
+				body: JSON.stringify(list),
+				headers: {
+					"Content-Type": "application/json"
+				}
+			}
+		)
+			.then(resp => {
+				console.log(resp.ok); // will be true if the response is successfull
+				console.log(resp.status); // the status code = 200 or code = 400 etc.
+				//console.log(resp.text()); // will try return the exact result as string
+				return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+			})
+			.then(response => {
+				console.log(response); //this will print on the console the exact object received from the server
+				getApi();
+			})
+			.catch(error => {
+				//error handling
+
+				console.error(error);
+			});
+	};
+
 	let newLI = list.map((item, index) => (
 		<li key={index} className="list-group-item  container ">
 			<div className="row">
 				<div className="col  text-start ">{item.label}</div>
+
+				{list[index].done == false ? (
+					<div
+						className="col done text-end text-muted"
+						onClick={() => {
+							markAsDone(index);
+						}}>
+						Mark as done...
+					</div>
+				) : (
+					<div
+						className="col done text-end text-success"
+						onClick={() => {
+							markAsDone(index);
+						}}>
+						Done!
+					</div>
+				)}
+
 				<div
 					className="col trash  text-end"
 					onClick={() => {

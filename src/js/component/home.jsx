@@ -8,6 +8,7 @@ import { List } from "./list.jsx";
 //create your first component
 const Home = () => {
 	const [userName, setUserName] = useState("");
+	const [lista, setLista] = useState("lista");
 
 	return (
 		<div className="text-center mt-5">
@@ -22,6 +23,7 @@ const Home = () => {
 							if (e.keyCode == 13) {
 								console.log("enter pressed");
 								setUserName(e.target.value);
+								setLista("");
 							}
 						}}
 					/>
@@ -30,7 +32,7 @@ const Home = () => {
 			<p>
 				<img src={rigoImage} />
 			</p>
-			<div className="lista">
+			<div className={lista}>
 				<List name={userName} />
 			</div>
 			;

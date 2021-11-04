@@ -22,9 +22,6 @@ const Home = () => {
 							if (e.keyCode == 13) {
 								console.log("enter pressed");
 								setUserName(e.target.value);
-								document
-									.querySelector(".lista")
-									.classList.remove("lista");
 							}
 						}}
 					/>

@@ -1,5 +1,5 @@
 {
-	"name": "ChaviToDoList",
+	"name": "chavitodolistfetch",
 	"version": "1.0.1",
 	"engines": {
 		"node": "10.x"
@@ -11,7 +11,7 @@
 		"build": "webpack --mode development",
 		"deploy:github": "node deploy-to-github.js"
 	},
-	"author": "Alejandro Sanchez",
+	"author": "Javier Manteca",
 	"license": "ISC",
 	"devDependencies": {
 		"@babel/cli": "^7.12.13",
